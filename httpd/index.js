@@ -7,7 +7,7 @@ const routingTable = {
     url: '../htdocs/index.html',
     type: 'text/html'
   },
-  '/styles.css': {
+  '/assets/css/styles.css': {
       url: '../htdocs/assets/css/styles.css',
       type: 'text/css'
     },
