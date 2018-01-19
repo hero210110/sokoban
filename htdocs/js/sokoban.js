@@ -68,6 +68,20 @@ let levels = [
      "------------",
      "------------"
    ],
+   [
+      "------------",
+      "------------",
+      "------------",
+      "------------",
+      "------------",
+      "------------",
+      "------------",
+      "--#####-----",
+      "--#@$.#-----",
+      "--#####-----",
+      "------------",
+      "------------"
+    ],
 ];
 
 /**
@@ -426,7 +440,23 @@ let prototypeGameState = {
     this.level[y] = replaceAt(this.level[y], x, SOKOBAN.MAN_ON_GOAL);
 
     return this;
+  },
+
+  TheEnd:function(){
+    var success = true,i,j;
+
+    for(var i = 0 ; i < this.level.length;i++){
+      for (var j = 0; j< this.level[i].length;j++){
+        if(this.level[i][j] == SOKOBAN.GOAL||this.level[i][j] == SOKOBAN.BOX){
+          success = false;
+        }
+      }
+    }
+    if (success){
+      alert("Congratulations! You win the game");
+    }
   }
+
 };
 
 /**
@@ -566,6 +596,7 @@ let sokoban = {
   update: function (e) {
     this.move(e);
     this.paint();
+    this.TheEnd();
   },
 };
 
@@ -576,7 +607,7 @@ let sokoban = {
  * @returns HTML 'section' 物件，含有關卡選擇按鈕
  */
 let controlPane = (sokoban) => {
-  let choices = [ '第一關', '第二關', '第三關' ];
+  let choices = [ 'first round', 'second round', 'third round' ];
 
   let section = document.createElement('section');
   section.style.gridArea = '5 / 2 / 6 / 5';
